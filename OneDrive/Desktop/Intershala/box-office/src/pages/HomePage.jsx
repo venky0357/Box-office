@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { searchForShows,searchForPeople } from "./../api/tvmaze";
+import ShowGrid from "../components/shows/ShowsGrid";
+import ActorsGrid from "../components/Actors/ActorsGrid";
 
 const HomePage = () => {
   const [searchInput, setString] = useState("");
@@ -38,10 +40,15 @@ const onsearch = async (ev) => {
     if (apiDataerrorhandled) {
       return <div>Error 404 not found {apiDataerrorhandled.Message} </div>;
     }
+    if(apiData?.length===0)
+    {
+      return <div>No results
+      </div>
+    }
     if (apiData) {
       return  apiData[0].show 
-              ? apiData.map((data) => ( <div key={data.show.id}>{data.show.name}</div> ))
-              : apiData.map((data) => ( <div key={data.person.id}>{data.person.name}</div>))  ;
+              ? <ShowGrid shows={apiData}/>
+              :<ActorsGrid actors={apiData}/>;
     }
     return null;
   };

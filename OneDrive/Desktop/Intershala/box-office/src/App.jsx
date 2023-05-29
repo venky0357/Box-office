@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Starred from "./pages/Starred";
 import Mainpage from "./components/Mainpage";
+import Show from "./pages/Show"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/starred" element={<Starred />} />
         </Route>
         <Route path="*" element={<div>404 Not found page</div>} />
+        <Route path="/show/:showId" element={<Show />}/>
         {/* <Route path="/" element={<App />}>
         <Route index element={<Home />} />
         <Route path="teams" element={<Teams />}>
